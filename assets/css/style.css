@@ -111,9 +111,33 @@ a {
   width: 220px;
   height: 220px;
 
+  position: relative;
+
   margin-top: 9px;
 
   overflow: hidden;
+}
+
+.actor-avatar-circle > * {
+  width: inherit;
+  height: inherit;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.actor-initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--black-color);
+  color: white;
+
+  /* z-index: 9; */
+
+  font-size: 5rem;
 }
 
 .actor-avatar {
