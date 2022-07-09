@@ -135,8 +135,6 @@ a {
   background-color: var(--black-color);
   color: white;
 
-  /* z-index: 9; */
-
   font-size: 5rem;
 }
 
@@ -189,6 +187,11 @@ a {
   font-size: 28px;
 }
 
+.actor-social-link:focus {
+  border: 0;
+  outline: none;
+}
+
 .actors-list {
   min-height: 200px;
 
@@ -199,7 +202,7 @@ a {
   background-color: var(--white-color);
 }
 
-.actors-list span{
+.actors-list span {
   position: absolute;
 
   top: 50%;
@@ -214,10 +217,55 @@ a {
   text-transform: uppercase;
 }
 
-.actor-item{
+.actor-item {
   margin-bottom: 5px;
 
   font-weight: 700;
   font-size: 25px;
   line-height: 1.2em;
+}
+
+.error-opacity {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: var(--black-color);
+  opacity: 0.9;
+  z-index: 100;
+}
+
+.error {
+  position: fixed;
+
+  max-width: 900px;
+  max-height: 550px;
+
+  width: 100%;
+  height: 100%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--lite-red-color);
+
+  z-index: 100;
+}
+
+.error-text {
+  max-width: 800px;
+  width: 100%;
+
+  margin: 25% auto 0;
+
+  color: var(--white-color);
+
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 1.2em;
+  text-align: center;
 }
