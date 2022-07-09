@@ -56,6 +56,7 @@ function createActorCard({
           socialMap.get(hostNameLink),
         ],
         attributes: { href: item, target: "_blank" },
+        events: { click: handlerSocialClick}
       })
     );
   });
@@ -72,7 +73,6 @@ function createActorCard({
     "h2",
     {
       classNames: ["actor-fio"],
-      attributes: { id: `actor-fio-${id}` },
     },
     document.createTextNode(`${firstName} ${lastName}`)
   );
@@ -125,7 +125,6 @@ function createActorCard({
     "article",
     {
       classNames: ["actor"],
-      attributes: { "data-actor-id": `actor-fio-${id}` },
       events: { click: addActorToList },
     },
     actorAvatarBlock,
@@ -174,36 +173,35 @@ const actors = createElement("section", { classNames: ["actors"] }, container);
 
 document.body.append(actors);
 
-
-
-
 // Функции и Оброботчики событий
 
 //Обработчик на добавление актера в список
 function addActorToList({ target }) {
-  if (!document.getElementById(target.dataset.actorId)) {
+  const actorNode = target.closest('.actor').querySelector('.actor-fio');
+  
+  if (!actorNode) {
     return;
-  } else {
-    const fioCurrentActor = document.getElementById(
-      target.dataset.actorId
-    ).textContent;
+  }
 
-    if (listActors.includes(fioCurrentActor)) {
-      return;
-    } else {
-      actorListSpan.style.display = "none";
+  const fioCurrentActor = actorNode.textContent;
 
-      listActors.push(fioCurrentActor);
-      const actorItem = createElement(
-        "li",
-        { classNames: ["actor-item"] },
-        document.createTextNode(fioCurrentActor)
-      );
-      actorList.append(actorItem);
-    }
+  if (!listActors.includes(fioCurrentActor)) {
+    actorListSpan.style.display = "none";
+
+    listActors.push(fioCurrentActor);
+    const actorItem = createElement(
+      "li",
+      { classNames: ["actor-item"] },
+      document.createTextNode(fioCurrentActor)
+    );
+    actorList.append(actorItem);
   }
 }
 // Обработчик на ошибку
+function handlerSocialClick(e){
+  e.stopPropagation();
+}
+
 function handlerError({ target }) {
   target.remove();
 }
